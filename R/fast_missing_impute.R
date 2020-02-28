@@ -13,6 +13,6 @@
 #' @export
 #' @examples
 #' fast_missing_impute(data = iris, method = "mean", cols = c("Sepal.Length", "Sepal.Width"))
-#' fast_missing_impute(mtcars, "median", c(hp, gear, carb))
+#' fast_missing_impute(mtcars, "median", c("hp", "gear", "carb"))
 fast_missing_impute <- function(df, method, cols) {
 }
