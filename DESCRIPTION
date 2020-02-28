@@ -6,6 +6,6 @@ Authors@R:
            family = "Moharir",
            role = c("aut", "cre"))
 Description: Finds outliers, imputes missing values, makes EDA and correlation plots.
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
