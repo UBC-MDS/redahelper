@@ -1,17 +1,15 @@
 #' Fast correlation analysis
 #'
-#' Read in .csv data and the column names, conduct correlation analysis between
+#' conduct correlation analysis between selected
 #' column pairs, output the correlogram
 #'
-#' @param input_path string
-#' @param col_name list
-#' @param out_path string
+#' @param df dataframe
+#' @param names list
 #'
 #' @return plot object
 #'
 #' @examples
-#' fast_corr(input_path, col_name = [], out_path)
+#' fast_corr(your_data_frame, the_selected_columns)
 
-
-fast_corr <- function(input_path, col_name, out_path) {
+fast_corr <- function(df, names) {
 }
