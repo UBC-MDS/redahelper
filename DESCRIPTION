@@ -2,13 +2,11 @@ Package: redahelper
 Title: Makes your EDA analysis easier! 
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "Suvarna",
-           family = "Moharir",
-           role = c("aut", "cre"))
+    person("Suvarna", "Moharir", email = "suvarna@alumni.ubc.ca", role = c("aut", "cre"))
 Description: Finds outliers, imputes missing values, makes EDA and correlation plots.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
 Suggests: 
-    testthat
+    testthat (>= 2.1.0)
