@@ -14,7 +14,6 @@
 #' @return ggplot object
 #' @export
 #' @examples
-#' check_route(tibble(lat = -3, long = 3), tibble(lat = -seq(0, 10, 2), long = seq(0, 10, 2)))
 #' fast_plot(iris, "Sepal.Length", "Sepal.Width", "scatter")
 fast_plot  <- function(df, x, y, plot_type){   
 }
