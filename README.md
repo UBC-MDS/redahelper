@@ -45,8 +45,20 @@ In the following table we have summarized existing packages that are related to 
 |Outlier identification| R| [Test for Outliers](https://cran.r-project.org/web/packages/outliers/index.html)|
 |Outlier identification| R| [Outlier Detection](https://cran.r-project.org/web/packages/OutlierDetection/index.html)|
 |Missing Value Treatment | R | [Mice Package](https://cran.r-project.org/web/packages/mice/index.html)|
+|Missing Value Treatment | R | [Amelia Package](https://cran.r-project.org/web/packages/Amelia/index.html)|
 |Data Visualization|R|[ggplot](https://ggplot2.tidyverse.org/)|
 |Correlation Visualization|R|[corplot](https://cran.r-project.org/web/packages/corrplot/index.html)|
+
+
+
+
+**How will our package compare to the previous existing packages/functions?**
+
++ The fast_plot function leverages the ggplot package in R, however it improves on it by giving the user the ease to change plot type by changing an argument, and including error handling to ensure appropriate column types for certain plots.
++ The R packages "GGalley", "ggplot2" and "corrplot" have similar functions in creating the correlation matrix. However, our function for correlation analysis provides a more user-friendly (less coding) experience and makes it easier to select the columns (features) for the analysis. It will filter out of the categorical columns and only perform the analysis on the numeric columns.
++ The R packages "MICE", "Amelia", and "Hmisc" have a similar function to imputing missing data. However, our function is likely more convenient for the user as it involves less coding, requiring the user to simply select the method of imputation and the columns with missing data.
++ In relation to outlier identification our package will serve as another options for users by creating an integral solution by mixing current existing methods into a single function. It will automatize the usage of Z-score and Interquantile methods to identify outliers.
+
 
 
 ### Documentation
