@@ -26,6 +26,5 @@ The function includes error handling to stop plots from being created for inappr
 column types, such as a scatter plot will not be appropriate if both columns have categorical types
 }
 \examples{
-check_route(tibble(lat = -3, long = 3), tibble(lat = -seq(0, 10, 2), long = seq(0, 10, 2)))
 fast_plot(iris, "Sepal.Length", "Sepal.Width", "scatter")
 }
