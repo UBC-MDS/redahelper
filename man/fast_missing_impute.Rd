@@ -9,7 +9,7 @@ fast_missing_impute(df, method, cols)
 \arguments{
 \item{df}{The dataframe of interest}
 
-\item{method}{The method of imputation from: {remove, mean, median, mode, multiple}}
+\item{method}{The method of imputation from: {remove, mean, median, mode}}
 
 \item{cols}{The column names with missing data to be modified}
 }
@@ -23,6 +23,6 @@ The choices of imputation method are either remove (removes all rows with
 missing data), mean, median, mode, or multiple imputation.
 }
 \examples{
-fast_missing_impute(data = iris, method = "mean", cols = c("Sepal.Length", "Sepal.Width"))
-fast_missing_impute(mtcars, "median", c("hp", "gear", "carb"))
+fast_missing_impute(df = iris, method = "mean", cols = c("Sepal.Length", "Sepal.Width"))
+fast_missing_impute(df = mtcars, method = "median", cols = c("hp", "gear", "carb"))
 }
