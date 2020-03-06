@@ -25,14 +25,14 @@ fast_outlier_id <- function(data,cols="All",method = "z-score",threshold_low_fre
     if (!tolower(cols) == "all"){
         for (i in cols){
             if(!i %in% colnames(data)){
-                stop("x column name is not a column in data frame entered!")
+                stop("Column name is not a column in data frame entered!")
             }
         }
     }
     
     ##Check method selected is allowed
     if (!tolower(method) %in% c("z-score","interquartile")){
-        stop("The only permitted values are: 'z-score' or 'interquantile'")
+        stop("The only permitted values are z-score or interquantile")
     }
  
     if (tolower(cols) == 'all'){
@@ -43,6 +43,7 @@ fast_outlier_id <- function(data,cols="All",method = "z-score",threshold_low_fre
     perc_nans_list = list()
     outlier_values_list = list()
     outlier_count_list = list()
+    outlier_perc_list = list()
     method_list = list()
 
     subset_data = data[cols]
@@ -58,6 +59,7 @@ fast_outlier_id <- function(data,cols="All",method = "z-score",threshold_low_fre
                 score = abs(scale(data_no_nans))
                 outlier_values = list(data_no_nans[which(score>2)])
                 outlier_count_list = append(outlier_count_list,length(outlier_values[[1]]))
+                outlier_perc_list = append(outlier_perc_list,round(length(outlier_values[[1]])/length(subset_data[[i]]),2))
                 outlier_values_list = append(outlier_values_list,outlier_values)
                 method_list = append(method_list,"Z-Score")
                 } else if (tolower(method) == "interquantile") {
@@ -68,19 +70,20 @@ fast_outlier_id <- function(data,cols="All",method = "z-score",threshold_low_fre
                 score = (data_no_nans < (Q1 - 1.5 * IQR)) | (data_no_nans > (Q3 + 1.5 * IQR))
                 outlier_values = list(data_no_nans[which(score>0)])
                 outlier_count_list = append(outlier_count_list,length(outlier_values[[1]]))
+                outlier_perc_list = append(outlier_perc_list,round(length(outlier_values[[1]])/length(subset_data[[i]]),2))
                 outlier_values_list = append(outlier_values_list,outlier_values)
                 method_list = append(method_list,"Interquantile")
                 }
             } else if (class(data_no_nans) %in% c('character','factor')){
             score = (table(data_no_nans)/sum(table(data_no_nans)))
-            print(score)
             outlier_values = list(labels(which(score<threshold_low_freq)))
-            print(outlier_values)
-            print(table(data_no_nans[score<threshold_low_freq]))
             outlier_count_list = append(outlier_count_list,sum(table(data_no_nans[which(score<threshold_low_freq)])))
+            outlier_perc_list = append(outlier_perc_list,round(sum(table(data_no_nans[which(score<threshold_low_freq)]))/length(subset_data[[i]]),2))
             outlier_values_list = append(outlier_values_list,outlier_values)
             method_list = append(method_list,"low-freq")
-            }
+            } else {
+            stop("Columns must be of the following types ('numeric','integer','double','character','factor')")
+        }
     }
     
     summary = tibble(
@@ -89,7 +92,8 @@ fast_outlier_id <- function(data,cols="All",method = "z-score",threshold_low_fre
         no_nans = as.integer(no_nans_list),
         perc_nans = as.double(perc_nans_list),
         outlier_method = method_list,
-        no_outliers = outlier_count_list,
+        no_outliers = as.integer(outlier_count_list),
+        perc_outliers = outlier_perc_list,
         outlier_values = outlier_values_list
     )
     
