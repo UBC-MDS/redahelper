@@ -99,7 +99,7 @@ fast_outlier_id <- function(data,cols="All",method = "z-score",threshold_low_fre
     
     ##Validating produced summarry contains the same number of requested columns
 
-    if (!(count(summary)[[1]]) == length(cols)){
+    if (!(dplyr::count(summary)[[1]]) == length(cols)){
         stop("Summary does not contain expected number of columns")
     }       
     return(summary)
