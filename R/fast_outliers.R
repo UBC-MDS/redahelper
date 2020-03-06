@@ -86,7 +86,7 @@ fast_outlier_id <- function(data,cols="All",method = "z-score",threshold_low_fre
         }
     }
     
-    summary = tibble(
+    summary = tibble::tibble(
         column_name = cols,
         type = as.character(col_type_list),
         no_nans = as.integer(no_nans_list),
