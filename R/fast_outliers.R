@@ -11,7 +11,7 @@
 #' @return dataframe
 #' @export
 #' @examples
-#' fast_outliers_identifier(data = iris, cols =  c("Sepal.Length", "Sepal.Width"), method = "z-score")
+#' fast_outlier_id(data = iris, cols =  c("Sepal.Length", "Sepal.Width"), method = "z-score")
 
 fast_outlier_id <- function(data,cols="All",method = "z-score",threshold_low_freq = 0.05) {
     
