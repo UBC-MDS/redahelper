@@ -19,10 +19,10 @@ fast_plot(df, x, y, plot_type)
 ggplot object
 }
 \description{
-The function takes in a dataframe, two column names for x and y axis and a plot type and 
+The function takes in a dataframe, two column names for x and y axis and a plot type and
 creates the plot using the ggplot2 library.
 The plot types are restricted to either line plot, scatter plot or bar chart.
-The function includes error handling to stop plots from being created for inappropriate 
+The function includes error handling to stop plots from being created for inappropriate
 column types, such as a scatter plot will not be appropriate if both columns have categorical types
 }
 \examples{

@@ -4,21 +4,22 @@
 \alias{fast_corr}
 \title{Create correlation matrix for columns in dataframe}
 \usage{
-fast_corr(df, column_names)
+fast_corr(df, selected_columns)
 }
 \arguments{
 \item{df}{The data that will be plotted}
 
-\item{column_names}{The vector of column names to be included in correlation matrix}
+\item{selected_columns}{The vector of column names to be included in correlation matrix}
 }
 \value{
 plot object
 }
 \description{
 The function takes in a dataframe/tibble and a vector of column names
-and creates a correlation matrix. 
+and creates a correlation matrix.
 The correlation matrix can only include numeric columns
 }
 \examples{
-fast_corr(iris, c("Sepal.Length", "Sepal.Width"))
+fast_corr(iris, c('Sepal.Length','Sepal.Width', 'Petal.Length','Petal.Width', 'Species'))
+fast_corr(iris, c(1,2,3,4,5))
 }
