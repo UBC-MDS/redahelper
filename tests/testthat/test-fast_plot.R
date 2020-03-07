@@ -1,4 +1,4 @@
-test_df = tibble("col_int"= c(1L, 2L, 3L, 4L, 5L, 6L), 
+test_df = tibble::tibble("col_int"= c(1L, 2L, 3L, 4L, 5L, 6L), 
                  "col_chr"=c("a", "b", "d", "d", "f","e"),
                  "col_flt"=c(7, 10.6, 13, 4.2, 12, NaN),
                  "col_fct_chr"=as.factor(c("hello", "be", "as", "who", "she","hi")),

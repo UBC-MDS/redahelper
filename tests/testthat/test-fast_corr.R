@@ -1,3 +1,7 @@
+#helper data
+selected_columns <- c('Sepal.Length','Sepal.Width', 'Petal.Length','Petal.Width', 'Species')
+test_df <- iris
+
 #tests for input
 test_that('The type of the input data must be tibble or dataframe', {
   test_df <- as.list(iris)
