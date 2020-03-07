@@ -6,7 +6,7 @@
 #' @param data dataframe - Dataframe to be analyzed
 #' @param cols list -  List containing the columns to be analyzed.
 #' @param method string - string indicating which method to be used to identify outliers (methods available are: "Z score" or "Interquantile Range")
-#' @param threshold_low_fre double - Indicates the threshold for evaluating outliers in categorical columns.
+#' @param threshold_low_freq double - Indicates the threshold for evaluating outliers in categorical columns.
 #'
 #' @return dataframe
 #' @export

@@ -132,9 +132,9 @@ fast_plot <- function(df, x, y, plot_type) {
           }
         }
         
-        p <- ggplot2::ggplot(df, aes_string(x = y, y = x)) +
+        p <- ggplot2::ggplot(df, ggplot2::aes_string(x = y, y = x)) +
           ggplot2::geom_bar(stat = "identity", na.rm = TRUE, fill = "steelblue") +
-          coord_flip()
+          ggplot2::coord_flip()
       }
     } else if (lubridate::is.Date(df[[x]]) & lubridate::is.Date(df[[y]])) {
       stop("Bar charts should have a numeric column, and both X and Y are non numeric!")
@@ -143,9 +143,9 @@ fast_plot <- function(df, x, y, plot_type) {
         if (lubridate::is.Date(df[[y]])) {
           df[y] <- factor(df[[y]])
           
-          p <- ggplot2::ggplot(df, aes_string(x = y, y = x)) +
+          p <- ggplot2::ggplot(df, ggplot2::aes_string(x = y, y = x)) +
             ggplot2::geom_bar(stat = "identity", na.rm = TRUE, fill = "steelblue") +
-            coord_flip()
+            ggplot2::coord_flip()
         } else {
           df[x] <- factor(df[[x]])
           p <- ggplot2::ggplot(df, ggplot2::aes_string(x = x, y = y)) +
