@@ -14,4 +14,10 @@ Imports:
     purrr,
     tidyr,
     tibble,
-    stats
+    stats,
+    lubridate,
+    ggplot2,
+    dplyr,
+    tidyselect,
+    ggcorrplot,
+    readr
