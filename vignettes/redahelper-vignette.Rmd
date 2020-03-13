@@ -18,4 +18,103 @@ knitr::opts_chunk$set(
 library(redahelper)
 ```
 
-initial vignette setup. more to come ...
+# Introduction to redahelper
+
+When conducting an exploratory data analysis, users must:
+
+- Identify outliers, and decide whether to remove them or not.
+
+- Generate plots to explore the relationships between variables.
+
+- Find correlations between variables via a correlation coefficient.
+
+- Identify and impute missing data.
+
+The `redahelper` package aims to provide a more user-friendly experience through the following:
+
+- It identifies outliers in columns of a dataframe, and aims to make the outlier-removal-decision process more streamlined by providing information about the outliers and what % of the column contains outliers.
+
+- It automatically generates plots of specified variables and calculates correlation coefficients. 
+
+- It identifies and imputes missing data with a user-selected method. 
+
+
+This document outliers `redahelper`'s toolkit, and provides examples on how to use them. 
+
+## Data: airquality
+To explore the various functions of the `redahelper` package, this vignette wil luse the `airquality` dataset that is part of the base-R datasets. It is documented in `?airquality`.
+
+```{r}
+summary(airquality)
+
+dim(airquality)
+
+head(airquality)
+```
+
+## Identifying Outliers with `fast_outliers_id()`
+
+`fast_outliers_id()` allows the user to identify outliers in the data. The arguments are the dataframe (or tibble), the columns the user wants information on, the method of identifying outliers (either `z-score` or `interquartile`, and the threshold for evaluating outliers in categorical columns). The output is a dataframe summarizing the outliers in the dataframe, allowing the user to make the choice on how to proceed. 
+
+For example, finding outlier data with a method of z-score for all columns in the dataframe: 
+
+```{r}
+fast_outlier_id(data = airquality, cols = "ALL", method = "z-score", threshold_low_freq = 0.05)
+```
+
+
+## Plotting variables with `fast_plot()`
+
+`fast_plot()` allows a user to create an exploratory data analysis plot using two columns from the dataframe (or tibble) using `ggplot2`. The arguments are the dataframe (or tibble) of interest, the two columns of interest (x and y axes), and the type of plot to be generated, a choice from `scatter`, `line`, or `bar`. The output is a `ggplot2` plot of the selected columns using the selected plot type. The function contains error handling to ensure the user is selecting an appropriate plot (e.g. will not allow for a bar chart when both x and y are non-numeric).
+
+For example, plotting a scatter plot of `Ozone` and `Temp`:
+
+```{r}
+fast_plot(df = airquality, x = "Ozone" , y = "Temp", plot_type = "scatter")
+```
+
+Another example, a bar plot of the `Wind` by `Month`: 
+
+```{r}
+fast_plot(df = airquality, x = "Month" , y = "Wind", plot_type = "bar")
+```
+
+## Exploring correlations with `fast_corr()`
+
+`fast_corr()` allows the user to view the Pearson correlation coefficient of selected variables in the dataframe or tibble. The arguments are the dataframe (or tibble) and the columns of interest. The output is a correlation matrix displaying the various correlations. 
+
+
+For example, assessing the correlations among `Wind`, `Temp`, and `Month`:
+
+```{r}
+fast_corr(df = airquality, selected_columns = c("Wind", "Temp", "Month"))
+```
+
+
+## Identify and impute missing data with `fast_missing_impute()`
+
+`fast_missing_impute()` allows for a user to impute missing values from a column of the dataframe/tibble with a selected method. The arguments are the the dataframe(or tibble), the method of imputation (mean, median, mode, or remove to remove all rows with missing data in the selected columns), and the columns of interest. The output is a dataframe with the imputed values. 
+
+For example, imputing the missing values in `Ozone` and `Solar.R` with the median of the respective columns:
+
+```{r}
+imputed_median <- fast_missing_impute(df = airquality, method = "median", cols = c("Ozone", "Solar.R"))
+head(imputed_median)
+```
+
+Another example, using the same columns, but now removing the rows in `Ozone` and `Solar.R` with missing data:
+
+```{r}
+imputed_remove <- fast_missing_impute(df = airquality, method = "remove", cols = c("Ozone", "Solar.R"))
+head(imputed_remove)
+```
+
+## Comparisons
+
+Compared to existing options, `redahelper`: 
+
+- Allows for a more streamlined user experience as many common exploratory data analysis issues can be taken care of with one line of code. 
+
+- Does not modify the existing dataframe to allow the user to make decisions about whether they would like to make use of the output. 
+
+- Is well documented and includes considerable error handling. 
