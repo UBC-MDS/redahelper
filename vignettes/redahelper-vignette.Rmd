@@ -1,0 +1,21 @@
+---
+title: "redahelper-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{redahelper-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(redahelper)
+```
+
+initial vignette setup. more to come ...
