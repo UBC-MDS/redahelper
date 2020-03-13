@@ -107,7 +107,7 @@ fast_plot <- function(df, x, y, plot_type) {
         stop("Bar charts should have a numeric column, and both X and Y are non numeric!")
       } else {
         if (is.factor(df[[x]])) {
-          digit <- all(grepl("^[0-9]{1,}$", droplevels(df[[x]])))
+          digit <- all(grepl("^[0-9]{1,}$", droplevels(df[[x]]))) | all(grepl("[+-]?([0-9]*[.])?[0-9]+", droplevels(df[[x]])))
           if (digit == FALSE) {
             stop("Bar charts should have a numeric column, and both X and Y are non numeric!")
           }
@@ -121,20 +121,25 @@ fast_plot <- function(df, x, y, plot_type) {
         }
       }
     } else if (is.factor(df[[y]])) {
-      digit <- all(grepl("^[0-9]{1,}$", droplevels(df[[y]])))
+      digit <- all(grepl("^[0-9]{1,}$", droplevels(df[[y]]))) | all(grepl("[+-]?([0-9]*[.])?[0-9]+", droplevels(df[[y]])))
       if (digit == FALSE) {
         if (x_type == "character" | lubridate::is.Date(df[[x]])) {
           stop("Bar charts should have a numeric column, and both X and Y are non numeric!")
         } else if (is.factor(df[[x]])) {
-          digit <- all(grepl("^[0-9]{1,}$", droplevels(df[[x]])))
+          digit <- all(grepl("^[0-9]{1,}$", droplevels(df[[x]])))| all(grepl("[+-]?([0-9]*[.])?[0-9]+", droplevels(df[[x]])))
           if (digit == FALSE) {
             stop("Bar charts should have a numeric column, and both X and Y are non numeric!")
           }
         }
+      } else if (x_type == "character" | lubridate::is.Date(df[[x]])){
+        p <- ggplot2::ggplot(df, ggplot2::aes_string(x = x, y = y)) +
+          ggplot2::geom_bar(stat = "identity", na.rm = TRUE, fill = "steelblue")
+      } else {
         
         p <- ggplot2::ggplot(df, ggplot2::aes_string(x = y, y = x)) +
           ggplot2::geom_bar(stat = "identity", na.rm = TRUE, fill = "steelblue") +
           ggplot2::coord_flip()
+        
       }
     } else if (lubridate::is.Date(df[[x]]) & lubridate::is.Date(df[[y]])) {
       stop("Bar charts should have a numeric column, and both X and Y are non numeric!")
