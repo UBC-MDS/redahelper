@@ -18,6 +18,14 @@ test_that("x input must be a string", {
   expect_error(fast_plot(df = test_df, x = c("col_int", "hi"), "col_flt", "scatter"), "x column name must be a string!", ignore.case = TRUE)
 })
 
+test_that("y input must be a string", {
+  expect_error(fast_plot(df = test_df, x = "col_int", c("col_flt", "hi"), "scatter"), "y column name must be a string!", ignore.case = TRUE)
+})
+
+test_that("x input must be a column in data", {
+  expect_error(fast_plot(df = test_df, x = "avdd", "col_int", "scatter"), "x column name is not a column in data frame entered!", ignore.case = TRUE)
+})
+
 test_that("y input must be a column in data", {
   expect_error(fast_plot(df = test_df, x = "col_int", "abcd", "scatter"), "y column name is not a column in data frame entered!", ignore.case = TRUE)
 })
@@ -28,6 +36,10 @@ test_that("plot type must be scatter/bar/line", {
 
 test_that("column cannot be completely null", {
   expect_error(fast_plot(df = test_df, x = "col_nan", "col_flt", "bar"), "x Column must not be all Null!", ignore.case = TRUE)
+})
+
+test_that("column cannot be completely null", {
+  expect_error(fast_plot(df = test_df, x = "col_flt", "col_nan", "bar"), "y Column must not be all Null!", ignore.case = TRUE)
 })
 
 # base cases for each plot type 
@@ -110,6 +122,10 @@ test_that("x and y cannot be factor with non numeric elements in bar chart", {
                "Bar charts should have a numeric column, and both X and Y are non numeric!", ignore.case = TRUE)
 })
 
+test_that("x and y cannot be both be dates in a bar chart", {
+  expect_error(fast_plot(df = test_df, x = "col_date", y="col_date", plot_type ="bar"), 
+               "Bar charts should have a numeric column, and both X and Y are non numeric!", ignore.case = TRUE)
+})
 
 test_that('Bar plot with numeric x and y as date: use geom_bar and have x and y labels be the 
 column names and y column should be transformed to factor. ', {
@@ -129,4 +145,35 @@ column names and x column should be transformed to factor. ', {
   expect_true(is.factor(p$data[["col_int"]]))  
 })
 
+test_that('Bar plot with x as numeric factor and y as character: use geom_bar and have x and y labels be the 
+column names.', {
+  p <- fast_plot(df = test_df, x = "col_fct_flt", y ="col_chr", plot_type ="bar")
+  expect_true("GeomBar" %in% c(class(p$layers[[1]]$geom)))
+  expect_true("col_chr" %in% p$labels$x)
+  expect_true("col_fct_flt" %in% p$labels$y)  
+})
+
+test_that('Bar plot with x as numeric and y as character: use geom_bar and have x and y labels be the 
+column names.', {
+  p <- fast_plot(df = test_df, x = "col_int", y ="col_chr", plot_type ="bar")
+  expect_true("GeomBar" %in% c(class(p$layers[[1]]$geom)))
+  expect_true("col_chr" %in% p$labels$x)
+  expect_true("col_int" %in% p$labels$y)  
+})
+
+test_that('Bar plot with x as numeric and y as numeric factor: use geom_bar and have x and y labels be the 
+column names.', {
+  p <- fast_plot(df = test_df, x = "col_int", y ="col_fct_flt", plot_type ="bar")
+  expect_true("GeomBar" %in% c(class(p$layers[[1]]$geom)))
+  expect_true("col_fct_flt" %in% p$labels$x)
+  expect_true("col_int" %in% p$labels$y)  
+})
+
+test_that('Bar plot with x as character and y as numeric factor: use geom_bar and have x and y labels be the 
+column names.', {
+  p <- fast_plot(df = test_df, x = "col_chr", y ="col_fct_flt", plot_type ="bar")
+  expect_true("GeomBar" %in% c(class(p$layers[[1]]$geom)))
+  expect_true("col_chr" %in% p$labels$x)
+  expect_true("col_fct_flt" %in% p$labels$y)  
+})
 

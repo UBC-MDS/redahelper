@@ -1,5 +1,7 @@
 ## redahelper 
 
+[![Codecov test coverage](https://codecov.io/gh/UBC-MDS/redahelper/branch/master/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/redahelper?branch=master)
+
 An R package that simplifies up the main EDA procedures such as: outlier identification, data visualization, correlation, missing data imputation.
 
 ### Authors
@@ -9,11 +11,8 @@ An R package that simplifies up the main EDA procedures such as: outlier identif
 
 ### Project Overview
 
-We are aware that data understanding and cleaning represents 60% of data scientist's time given to any project. 
-Our goal with this package is to simplify this process , and make a more efficient use of time while working on some of the main procedures done in EDA (outlier identification, data visualization, correlation, missing data imputation).
-
-
-
+Data understanding and cleaning represents 60% of data scientist's time given to any project. 
+The goal with this package is to simplify this process , and make a more efficient use of time while working on some of the main procedures done in EDA (outlier identification, data visualization, correlation, missing data imputation).
 
 
 ### Installation:
@@ -50,9 +49,9 @@ devtools::install_github("UBC-MDS/redahelper")
 
 At this time, there are multiple packages that are used during EDA with a similar functionality in both R and Python. Nevertheless most of these existing packages require multiple steps or provide results that could be simplified.
 
-In our REDAHELPR package, our focus is to minimize the code an user uses to generate significant conclusions in relation to: outliers, missing data treatment, data visualization, correlation computing and visualization.
+In the `redahelper` package, the focus is to minimize the code a user uses to generate significant conclusions in relation to: outliers, missing data treatment, data visualization, correlation computing and visualization.
 
-In the following table we have summarized existing packages that are related to the procedures that are simplified in our redahelper package.
+The following table summarizes existing packages that are related to the procedures that are simplified in the `redahelper` package.
 
 
 
@@ -68,14 +67,14 @@ In the following table we have summarized existing packages that are related to 
 
 
 
-**How will our package compare to the previous existing packages/functions?**
+**How will the `redahelper` package compare to the previous existing packages/functions?**
 
 
-The redahelper package aims to provide an user friendly experience by reducing the code needed to conduct an exploratory data analysis, specifically for identifying outliers, imputing missing data, and generating visualizations for relations and correlations.
+The `redahelper` package aims to provide an user friendly experience by reducing the code needed to conduct an exploratory data analysis, specifically for identifying outliers, imputing missing data, and generating visualizations for relations and correlations.
 
-The fast_plot function leverages the ggplot package in R, however it improves on it by giving the user the ease to change plot type by changing an argument, and including error handling to ensure appropriate column types for certain plots. While the R packages "GGalley", "ggplot2" and "corrplot" have similar functions in creating the correlation matrix, our function for correlation analysis provides a more user-friendly (less coding) experience and makes it easier to select the columns (features) for the analysis. It will filter out of the categorical columns and only perform the analysis on the numeric columns.
-On ther hand the R packages "MICE", "Amelia", and "Hmisc" have a similar function to imputing missing data. However, our function is likely more convenient for the user as it involves less coding, requiring the user to simply select the method of imputation and the columns with missing data.
-Finally, in relation to outlier identification our package will serve as another options for users by creating an integral solution by mixing current existing methods into a single function. It will automatize the usage of Z-score and Interquantile methods to identify outliers.
+The fast_plot function leverages the ggplot package in R, however it improves on it by giving the user the ease to change plot type by changing an argument, and including error handling to ensure appropriate column types for certain plots. While the R packages GGalley, ggplot2 and corrplot have similar functions in creating the correlation matrix, the fast_corr function provides a more user-friendly (less coding) experience and makes it easier to select the columns (features) for the analysis. It will filter out of the categorical columns and only perform the analysis on the numeric columns.
+On ther hand, the R packages MICE, Amelia, and Hmisc have a similar function to imputing missing data. However, the fast_missing_impute function is likely more convenient for the user as it involves less coding, requiring the user to simply select the method of imputation and the columns with missing data.
+Finally, in relation to outlier identification, the fast_outliers_id function will serve as another options for users by creating an integral solution by mixing current existing methods into a single function. It will automatize the usage of Z-score and Interquantile methods to identify outliers.
 
 ### Dependencies
 - purrr == 0.3.3
