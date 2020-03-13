@@ -10,7 +10,10 @@ LazyData: true
 RoxygenNote: 7.0.2
 Suggests: 
     testthat (>= 2.1.0),
-    covr
+    covr,
+    knitr,
+    rmarkdown
+
 Imports: 
     purrr,
     tidyr,
@@ -22,5 +25,8 @@ Imports:
     tidyselect,
     ggcorrplot,
     readr
+
 URL: https://github.com/UBC-MDS/redahelper
 BugReports: https://github.com/UBC-MDS/redahelper/issues
+VignetteBuilder: knitr
+
