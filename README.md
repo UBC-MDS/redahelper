@@ -1,6 +1,5 @@
 ## redahelper 
-
-[![Codecov test coverage](https://codecov.io/gh/UBC-MDS/redahelper/branch/master/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/redahelper?branch=master)
+[![codecov](https://codecov.io/gh/UBC-MDS/redahelper/branch/master/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/redahelper)
 
 An R package that simplifies up the main EDA procedures such as: outlier identification, data visualization, correlation, missing data imputation.
 
