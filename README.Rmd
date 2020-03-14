@@ -42,6 +42,11 @@ library(devtools)
 devtools::install_github("UBC-MDS/redahelper")
 ```
 
+### Documentation
+- The package website can be found [here](https://ubc-mds.github.io/redahelper/index.html)
+
+- The vignette can be found [here](https://ubc-mds.github.io/redahelper/articles/redahelper-vignette.html)
+
 ### Functions
 
 
