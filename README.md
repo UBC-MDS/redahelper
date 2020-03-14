@@ -45,6 +45,14 @@ To start using our package, please follow these instructions:
 
     devtools::install_github("UBC-MDS/redahelper")
 
+### Documentation
+
+  - The package website can be found
+    [here](https://ubc-mds.github.io/redahelper/index.html)
+
+  - The vignette can be found
+    [here](https://ubc-mds.github.io/redahelper/articles/redahelper-vignette.html)
+
 ### Functions
 
 | Function Name         | Input                                                                                                                                                          | Output                                                                                                                        | Description                                                                                                                                                                                                            |
@@ -58,8 +66,7 @@ To start using our package, please follow these instructions:
 
 The package can analyze the values of a given column list, and identify
 outliers using either the ZScore algorithm or interquantile range
-algorithm. Below is an example of a column to
-analyze.
+algorithm. Below is an example of a column to analyze.
 
 ``` r
 sample_data = tibble::tibble("col_a" = c(5000, 50, 6, 8, NaN, 10, 5, 2, 3))
@@ -90,8 +97,8 @@ fast_outlier_id(data=sample_data,cols="All",method = "z-score",threshold_low_fre
     ## # A tibble: 1 x 8
     ##   column_name type  no_nans perc_nans outlier_method no_outliers perc_outliers
     ##   <chr>       <chr>   <int>     <dbl> <list>               <int> <list>       
-    ## 1 col_a       nume…       1      0.11 <chr [1]>                1 <dbl [1]>    
-    ## # … with 1 more variable: outlier_values <list>
+    ## 1 col_a       nume~       1      0.11 <chr [1]>                1 <dbl [1]>    
+    ## # ... with 1 more variable: outlier_values <list>
 
 `redahelper` can also quickly create scatter, line or bar plots from a
 pandas data frame, using the ggplot2 library. As an example, using the
@@ -168,8 +175,7 @@ missing data treatment, data visualization, correlation computing and
 visualization.
 
 The following table summarizes existing packages that are related to the
-procedures that are simplified in the `redahelper`
-package.
+procedures that are simplified in the `redahelper` package.
 
 | EDA Procedure related     | Language | Existing Packages/Functions                                                              |
 | ------------------------- | -------- | ---------------------------------------------------------------------------------------- |

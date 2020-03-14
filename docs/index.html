@@ -62,7 +62,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/UBC-MDS/redahelper">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -105,25 +112,33 @@
 <ol>
 <li>Ensure <code>devtools</code> is installed on your computer. If not, you can open the console and input the following:</li>
 </ol>
-<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages('devtools')</a></code></pre>
+<!-- end list --><div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'devtools'</span>)</a></code></pre></div>
 <ol>
 <li>Load <code>devtools</code> by inputting this command into the console:</li>
 </ol>
-<pre><code><a href="https://rdrr.io/r/base/library.html">library(devtools)</a></code></pre>
+<!-- end list --><div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a></code></pre></div>
 <ol>
 <li>Install the <code>redahelper</code> package by inputting this command into the console:</li>
 </ol>
-<pre><code><a href="https://devtools.r-lib.org//reference/remote-reexports.html">devtools::install_github("UBC-MDS/redahelper")</a></code></pre>
+<!-- end list --><div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">devtools<span class="op">::</span><span class="kw"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"UBC-MDS/redahelper"</span>)</a></code></pre></div>
+</div>
+<div id="documentation" class="section level3">
+<h3 class="hasAnchor">
+<a href="#documentation" class="anchor"></a>Documentation</h3>
+<ul>
+<li><p>The package website can be found <a href="https://ubc-mds.github.io/redahelper/index.html">here</a></p></li>
+<li><p>The vignette can be found <a href="https://ubc-mds.github.io/redahelper/articles/redahelper-vignette.html">here</a></p></li>
+</ul>
 </div>
 <div id="functions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#functions" class="anchor"></a>Functions</h3>
 <table class="table">
 <colgroup>
-<col width="23%">
-<col width="31%">
-<col width="15%">
-<col width="28%">
+<col width="4%">
+<col width="30%">
+<col width="24%">
+<col width="41%">
 </colgroup>
 <thead><tr class="header">
 <th>Function Name</th>
@@ -158,6 +173,67 @@
 </tr>
 </tbody>
 </table>
+</div>
+<div id="usage" class="section level3">
+<h3 class="hasAnchor">
+<a href="#usage" class="anchor"></a>Usage</h3>
+<p>The package can analyze the values of a given column list, and identify outliers using either the ZScore algorithm or interquantile range algorithm. Below is an example of a column to analyze.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">sample_data =<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(<span class="st">"col_a"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">5000</span>, <span class="dv">50</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="ot">NaN</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb4-2" title="2">sample_data</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">## # A tibble: 9 x 1</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="co">##   col_a</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="co">##   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="co">## 1  5000</span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="co">## 2    50</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co">## 3     6</span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="co">## 4     8</span></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co">## 5   NaN</span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="co">## 6    10</span></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="co">## 7     5</span></a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="co">## 8     2</span></a>
+<a class="sourceLine" id="cb5-12" title="12"><span class="co">## 9     3</span></a></code></pre></div>
+<p>After using the <code>fast_outlier_id</code> function, it returns the following summary:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(redahelper)</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="reference/fast_outlier_id.html">fast_outlier_id</a></span>(<span class="dt">data=</span>sample_data,<span class="dt">cols=</span><span class="st">"All"</span>,<span class="dt">method =</span> <span class="st">"z-score"</span>,<span class="dt">threshold_low_freq =</span> <span class="fl">0.05</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co">## # A tibble: 1 x 8</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="co">##   column_name type  no_nans perc_nans outlier_method no_outliers perc_outliers</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="co">##   &lt;chr&gt;       &lt;chr&gt;   &lt;int&gt;     &lt;dbl&gt; &lt;list&gt;               &lt;int&gt; &lt;list&gt;       </span></a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="co">## 1 col_a       nume~       1      0.11 &lt;chr [1]&gt;                1 &lt;dbl [1]&gt;    </span></a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="co">## # ... with 1 more variable: outlier_values &lt;list&gt;</span></a></code></pre></div>
+<p><code>redahelper</code> can also quickly create scatter, line or bar plots from a pandas data frame, using the ggplot2 library. As an example, using the iris dataset:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(redahelper)</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="reference/fast_plot.html">fast_plot</a></span>(<span class="dt">df=</span>iris, <span class="dt">x=</span><span class="st">"Sepal.Length"</span>, <span class="dt">y=</span><span class="st">"Sepal.Width"</span>, <span class="dt">plot_type=</span><span class="st">"scatter"</span>)</a></code></pre></div>
+<p><img src="README_files/figure-gfm/unnamed-chunk-3-1.png"><!-- --></p>
+<p>The package can also create correlation matrix easily, by inputting a pandas data frame and desired columns. As an example, using the iris dataset:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(redahelper)</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="kw"><a href="reference/fast_corr.html">fast_corr</a></span>(iris, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Sepal.Length'</span>,<span class="st">'Sepal.Width'</span>, <span class="st">'Petal.Length'</span>,<span class="st">'Petal.Width'</span>))</a></code></pre></div>
+<p><img src="README_files/figure-gfm/unnamed-chunk-4-1.png"><!-- --></p>
+<p>Finally, <code>redahelper</code> can impute values to missing data, with method choices of either remove (removes all rows with missing data), mean, median, or mode imputation.</p>
+<p>Below is a toy dataframe with missing values:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">sample_data =<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(<span class="st">"col_1"</span>=<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(1L, <span class="ot">NA</span>, 3L, 3L, 5L, <span class="ot">NaN</span>),</a>
+<a class="sourceLine" id="cb10-2" title="2">                             <span class="st">"col_2"</span>=<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"a"</span>, <span class="ot">NA</span>, <span class="st">"d"</span>, <span class="st">"d"</span>, <span class="st">"f"</span>,<span class="st">"e"</span>))</a>
+<a class="sourceLine" id="cb10-3" title="3">sample_data</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co">## # A tibble: 6 x 2</span></a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="co">##   col_1 col_2</span></a>
+<a class="sourceLine" id="cb11-3" title="3"><span class="co">##   &lt;dbl&gt; &lt;chr&gt;</span></a>
+<a class="sourceLine" id="cb11-4" title="4"><span class="co">## 1     1 a    </span></a>
+<a class="sourceLine" id="cb11-5" title="5"><span class="co">## 2    NA &lt;NA&gt; </span></a>
+<a class="sourceLine" id="cb11-6" title="6"><span class="co">## 3     3 d    </span></a>
+<a class="sourceLine" id="cb11-7" title="7"><span class="co">## 4     3 d    </span></a>
+<a class="sourceLine" id="cb11-8" title="8"><span class="co">## 5     5 f    </span></a>
+<a class="sourceLine" id="cb11-9" title="9"><span class="co">## 6   NaN e</span></a></code></pre></div>
+<p>Using the <code>fast_missing_impute</code> function, with the “mode” imputation method, the function returns:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(redahelper)</a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="kw"><a href="reference/fast_missing_impute.html">fast_missing_impute</a></span>(<span class="dt">df =</span> sample_data, <span class="dt">method =</span> <span class="st">"mode"</span>, <span class="dt">cols =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"col_1"</span>, <span class="st">"col_2"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co">## # A tibble: 6 x 2</span></a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="co">##   col_1 col_2</span></a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="co">##   &lt;dbl&gt; &lt;chr&gt;</span></a>
+<a class="sourceLine" id="cb13-4" title="4"><span class="co">## 1     1 a    </span></a>
+<a class="sourceLine" id="cb13-5" title="5"><span class="co">## 2     3 d    </span></a>
+<a class="sourceLine" id="cb13-6" title="6"><span class="co">## 3     3 d    </span></a>
+<a class="sourceLine" id="cb13-7" title="7"><span class="co">## 4     3 d    </span></a>
+<a class="sourceLine" id="cb13-8" title="8"><span class="co">## 5     5 f    </span></a>
+<a class="sourceLine" id="cb13-9" title="9"><span class="co">## 6     3 e</span></a></code></pre></div>
 </div>
 </div>
 <div id="alignment-with-python--r-ecosystems" class="section level2">
@@ -235,7 +311,16 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div class="license">
+    <div class="links">
+<h2>Links</h2>
+<ul class="list-unstyled">
+<li>Browse source code at <br><a href="https://github.com/UBC-MDS/redahelper">https://​github.com/​UBC-MDS/​redahelper</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/UBC-MDS/redahelper/issues">https://​github.com/​UBC-MDS/​redahelper/​issues</a>
+</li>
+</ul>
+</div>
+<div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
@@ -258,7 +343,8 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://codecov.io/gh/UBC-MDS/redahelper?branch=master"><img src="https://codecov.io/gh/UBC-MDS/redahelper/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://codecov.io/gh/UBC-MDS/redahelper"><img src="https://codecov.io/gh/UBC-MDS/redahelper/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://github.com/UBC-MDS/redahelper/actions"><img src="https://github.com/UBC-MDS/redahelper/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
 </div>
