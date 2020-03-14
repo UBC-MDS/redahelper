@@ -213,6 +213,8 @@ solution by mixing current existing methods into a single function. It
 will automatize the usage of Z-score and Interquantile methods to
 identify outliers.
 
+You can find more references regarding these algorithms here: [Z-score](https://en.wikipedia.org/wiki/Standard_score) and [Interquartile](https://en.wikipedia.org/wiki/Interquartile_range).
+
 ### Dependencies
 
   - purrr == 0.3.3
