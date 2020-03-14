@@ -75,6 +75,8 @@ The fast_plot function leverages the ggplot package in R, however it improves on
 On ther hand, the R packages MICE, Amelia, and Hmisc have a similar function to imputing missing data. However, the fast_missing_impute function is likely more convenient for the user as it involves less coding, requiring the user to simply select the method of imputation and the columns with missing data.
 Finally, in relation to outlier identification, the fast_outliers_id function will serve as another options for users by creating an integral solution by mixing current existing methods into a single function. It will automatize the usage of Z-score and Interquantile methods to identify outliers.
 
+You can find more references regarding these algorithms here: [Z-score](https://en.wikipedia.org/wiki/Standard_score) and [Interquartile](https://en.wikipedia.org/wiki/Interquartile_range).
+
 ### Dependencies
 - purrr == 0.3.3
 - tidyr == 1.0.0
