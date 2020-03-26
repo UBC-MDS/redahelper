@@ -59,7 +59,7 @@ To start using our package, please follow these instructions:
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | fast\_outliers\_id    | 3 parameters: A dataframe , a list of columns to be included in analysis,method to be used to identify outliers (“Z-score algorithm” or “Interquantile Range”) | dataframe with included columns and outlier values identified, and % of counts considered as outliers for each anlyzed column | Given a dataframe, a list of given columns are analyzed in search for outlier values and return a dataframe summarizing the outliers values found and indicating which % of the counts are affected by this outlier(s) |
 | fast\_plot            | 4 parameters: dataframe, name of X column, name of y column, plot name                                                                                         | Plot object                                                                                                                   | Given a dataframe ,the columns to be considered X an Y respectively, and the desired plot; the function computes and returns the specified plot                                                                        |
-| fast\_corr            | 2 parameters: dataframe, list of columns to be analyzed,                                                                                                       | correlation plot object                                                                                                       | Calculates the correlation of all specified columns and generates a plot visualizing the correlation coefficients.                                                                                                     |
+| fast\_corr            | 2 parameters: dataframe, list of columns to be analyzed,                                                                                                       | Plot object                                                                                                                   | Calculates the Pearson correlation of all specified columns and generates a plot visualizing the correlation coefficients.                                                                                             |
 | fast\_missing\_impute | 3 parameters: dataframe, a string specifying the missing data treatment method,list of columns to be treated                                                   | new dataframe without missing values in the specified columns                                                                 | Given a dataframe and a list of columns in that dataframe, missing values are identified and treated as specified in the missing data treatment method                                                                 |
 
 ### Usage
@@ -97,8 +97,8 @@ fast_outlier_id(data=sample_data,cols="All",method = "z-score",threshold_low_fre
     ## # A tibble: 1 x 8
     ##   column_name type  no_nans perc_nans outlier_method no_outliers perc_outliers
     ##   <chr>       <chr>   <int>     <dbl> <list>               <int> <list>       
-    ## 1 col_a       nume~       1      0.11 <chr [1]>                1 <dbl [1]>    
-    ## # ... with 1 more variable: outlier_values <list>
+    ## 1 col_a       nume…       1      0.11 <chr [1]>                1 <dbl [1]>    
+    ## # … with 1 more variable: outlier_values <list>
 
 `redahelper` can also quickly create scatter, line or bar plots from a
 pandas data frame, using the ggplot2 library. As an example, using the
@@ -111,9 +111,9 @@ fast_plot(df=iris, x="Sepal.Length", y="Sepal.Width", plot_type="scatter")
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
-The package can also create correlation matrix easily, by inputting a
-pandas data frame and desired columns. As an example, using the iris
-dataset:
+The package can also create Pearson correlation matrix easily, by
+inputting a pandas data frame and desired columns. As an example, using
+the iris dataset:
 
 ``` r
 library(redahelper)
@@ -198,36 +198,38 @@ The fast\_plot function leverages the ggplot package in R, however it
 improves on it by giving the user the ease to change plot type by
 changing an argument, and including error handling to ensure appropriate
 column types for certain plots. While the R packages GGalley, ggplot2
-and corrplot have similar functions in creating the correlation matrix,
-the fast\_corr function provides a more user-friendly (less coding)
-experience and makes it easier to select the columns (features) for the
-analysis. It will filter out of the categorical columns and only perform
-the analysis on the numeric columns. On ther hand, the R packages MICE,
-Amelia, and Hmisc have a similar function to imputing missing data.
-However, the fast\_missing\_impute function is likely more convenient
-for the user as it involves less coding, requiring the user to simply
-select the method of imputation and the columns with missing data.
-Finally, in relation to outlier identification, the fast\_outliers\_id
-function will serve as another options for users by creating an integral
-solution by mixing current existing methods into a single function. It
-will automatize the usage of Z-score and Interquantile methods to
-identify outliers.
-
-You can find more references regarding these algorithms here: [Z-score](https://en.wikipedia.org/wiki/Standard_score) and [Interquartile](https://en.wikipedia.org/wiki/Interquartile_range).
+and corrplot have similar functions in creating the Pearson correlation
+matrix, the fast\_corr function provides a more user-friendly (less
+coding) experience and makes it easier to select the columns (features)
+for the analysis. It will filter out of the categorical columns and only
+perform the analysis on the numeric columns. On ther hand, the R
+packages MICE, Amelia, and Hmisc have a similar function to imputing
+missing data. However, the fast\_missing\_impute function is likely more
+convenient for the user as it involves less coding, requiring the user
+to simply select the method of imputation and the columns with missing
+data. Finally, in relation to outlier identification, the
+fast\_outliers\_id function will serve as another options for users by
+creating an integral solution by mixing current existing methods into a
+single function. It will automatize the usage of Z-score and
+Interquantile methods to identify outliers.
 
 ### Dependencies
 
-  - purrr == 0.3.3
-  - tidyr == 1.0.0
-  - tibble == 2.1.3
-  - testthat (\>= 2.1.0)
-  - stats == 3.6.1
-  - lubridate == 1.7.4
-  - ggplot2 == 3.2.1
-  - dplyr == 0.8.4
-  - tidyselect == 0.2.5
-  - ggcorrplot == 0.1.3
-  - readr == 1.3.1
+  - [purrr == 0.3.3](https://purrr.tidyverse.org/)
+  - [tidyr == 1.0.0](https://tidyr.tidyverse.org/)
+  - [tibble
+    == 2.1.3](https://www.rdocumentation.org/packages/tibble/versions/1.4.2)
+  - [testthat (\>= 2.1.0)](https://testthat.r-lib.org/)
+  - [stats == 3.6.1](https://rdrr.io/r/stats/stats-package.html)
+  - [lubridate
+    == 1.7.4](https://www.rdocumentation.org/packages/lubridate/versions/1.7.4)
+  - [ggplot2 == 3.2.1](https://ggplot2.tidyverse.org/)
+  - [dplyr
+    == 0.8.4](https://www.rdocumentation.org/packages/dplyr/versions/0.7.8)
+  - [tidyselect == 0.2.5](https://tidyselect.r-lib.org/)
+  - [ggcorrplot
+    == 0.1.3](https://rdrr.io/cran/ggcorrplot/src/R/ggcorrplot.R)
+  - [readr == 1.3.1](https://readr.tidyverse.org/)
 
 ### Credits
 
