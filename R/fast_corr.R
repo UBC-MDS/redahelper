@@ -1,13 +1,13 @@
-#' Create correlation matrix for columns in dataframe
+#' Create Pearson correlation matrix for columns in dataframe
 #'
 #' The function takes in a dataframe/tibble and a vector of column names
-#' and creates a correlation matrix.
+#' and creates a Pearson correlation matrix.
 #' The correlation matrix can only include numeric columns
 #'
 #' @param df The data that will be plotted
-#' @param selected_columns The vector of column names to be included in correlation matrix
+#' @param selected_columns The vector of column names to be included in Pearson correlation matrix
 #'
-#' @return plot object
+#' @return ggplot object
 #' @export
 #' @examples
 #' fast_corr(iris, c('Sepal.Length','Sepal.Width', 'Petal.Length','Petal.Width', 'Species'))
