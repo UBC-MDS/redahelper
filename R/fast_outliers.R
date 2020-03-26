@@ -1,7 +1,8 @@
-#' Analyzes the values of a given column list in a given dataframe, identifies outliers using either the Z-Score algorithm or interquantile range algorithm.
-#' The return is a dataframe containing the following columns: column name, list containing the outlier's index position, percentaje of total counts considered outliers.
-#' Modifies an existing dataframe, with missing values
-#' imputed based on the chosen method.
+#' Identifies outliers in a given dataframe.
+#' 
+#' The function takes in a dataframe/tibble.
+#' and identifies outliers on the specified columns
+#' through the z-score or interquantile method, returning a dataframe with the results.
 #'
 #' @param data dataframe - Dataframe to be analyzed
 #' @param cols list -  List containing the columns to be analyzed.
